@@ -1,0 +1,78 @@
+<?php
+// include database connection file
+include_once("config.php");
+
+// --- BAGIAN UPDATE DATA ---
+if (isset($_POST['update'])) {   
+    $id = $_POST['id'];
+    $nama_alat = $_POST['nama_alat'];
+    $tahun = $_POST['tahun'];
+    $merek = $_POST['merek'];
+    $lokasi = $_POST['lokasi'];
+
+    // validasi sederhana
+    if (!empty($id)) {
+        $result = mysqli_query($mysqli, "UPDATE alat SET nama_alat='$nama_alat', tahun='$tahun', merek='$merek', lokasi='$lokasi' WHERE id=$id");
+        header("Location: index.php");
+        exit();
+    } else {
+        echo "<p style='color:red;'>Gagal update: ID tidak ditemukan.</p>";
+    }
+}
+
+// --- BAGIAN TAMPILKAN DATA BERDASARKAN ID ---
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $result = mysqli_query($mysqli, "SELECT * FROM alat WHERE id=$id");
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $user_data = mysqli_fetch_assoc($result);
+        $nama_alat = $user_data['nama_alat'];
+        $tahun = $user_data['tahun'];
+        $merek = $user_data['merek'];
+        $lokasi = $user_data['lokasi'];
+    } else {
+        echo "<p style='color:red;'>Data tidak ditemukan!</p>";
+        exit();
+    }
+} else {
+    echo "<p style='color:red;'>ID tidak ditemukan di URL!</p>";
+    exit();
+}
+?>
+
+<html>
+<head>  
+    <title>Edit Data Alat</title>
+</head>
+
+<body>
+    <a href="index.php">Home</a>
+    <br/><br/>
+
+    <form name="update_user" method="post" action="edit.php">
+        <table border="0">
+            <tr> 
+                <td>Nama Alat</td>
+                <td><input type="text" name="nama_alat" value="<?php echo $nama_alat; ?>"></td>
+            </tr>
+            <tr> 
+                <td>Tahun</td>
+                <td><input type="text" name="tahun" value="<?php echo $tahun; ?>"></td>
+            </tr>
+            <tr> 
+                <td>Merek</td>
+                <td><input type="text" name="merek" value="<?php echo $merek; ?>"></td>
+            </tr>
+            <tr> 
+                <td>Lokasi</td>
+                <td><input type="text" name="lokasi" value="<?php echo $lokasi; ?>"></td>
+            </tr>
+            <tr>
+                <td><input type="hidden" name="id" value="<?php echo $id; ?>"></td>
+                <td><input type="submit" name="update" value="Update"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
