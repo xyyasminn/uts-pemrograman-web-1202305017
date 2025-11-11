@@ -1,4 +1,6 @@
 <?php
+// Commit 4: Menambahkan fitur hapus data inventori
+
 // include database connection file
 include_once("config.php");
 
