@@ -4,6 +4,7 @@
     }
 </style>
 <?php
+// Commit 5: Menyempurnakan tampilan halaman utama teknisi
 
 include_once("config.php");
 

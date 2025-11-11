@@ -4,6 +4,7 @@
     }
 </style>
 <?php
+// Commit 5: Menyempurnakan tampilan halaman utama inventori
 
 include_once("config.php");
 
@@ -41,3 +42,4 @@ $result = mysqli_query($mysqli, "SELECT * FROM alat ORDER BY id DESC");
     </table>
 </body>
 </html>
+
