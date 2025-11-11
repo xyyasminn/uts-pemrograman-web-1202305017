@@ -1,4 +1,5 @@
 <?php
+// Commit 2: Menambahkan konfigurasi database utama untuk proyek inventori
 
 //hst
 $databaseHost = 'localhost';
