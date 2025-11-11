@@ -33,6 +33,7 @@
     </form>
 
     <?php
+// Commit 3: Menambahkan fitur tambah data inventori
 
     // Check If form submitted, insert form data into users table.
     if(isset($_POST['Submit'])) {
